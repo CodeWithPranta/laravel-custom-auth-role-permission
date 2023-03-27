@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row d-flex justify-content-center">
-    <div class="col-12 col-md-6">
+    <div class="col-md-6">
 
         <h4 class="mt-3">আপনার তথ্য প্রদান করে রেজিস্ট্রশন করুন  </h4> <span>অথবা</span> <a href="{{route('home')}}">পুনরায় মূল পেজে যান</a>
         <form class="mt-5" action="{{route('user.store')}}" method="post">
