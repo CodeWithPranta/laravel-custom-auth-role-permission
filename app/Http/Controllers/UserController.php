@@ -30,7 +30,7 @@ class UserController extends Controller
 
         auth()->login($user);
 
-        return redirect('/')->with('message', 'Registration successful! You\'re logged in!');
+        return redirect('/')->with('message', 'ধন্যবাদ, আপনি সফলভাবে রেজিস্ট্রেশন সম্পন্ন করেছেন।');
     }
 
     // Create logout option for a user
@@ -39,7 +39,7 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/')->with('message', 'You\'re logged out successfully!');
+        return redirect('/')->with('message', 'আপনি সফলভাবে লগআউট হয়েছেন!');
     }
 
     // Show login form
@@ -60,7 +60,7 @@ class UserController extends Controller
             return view('users.dashboard');
         }
 
-        return back()->withErrors(['phone' => 'Your mobile or password or both not match!'])->onlyInput('email');
+        return back()->withErrors(['phone' => 'আপনি ভূল মোবাইল নম্বর অথবা পাসওয়ার্ড প্রদান করেছেন!'])->onlyInput('email');
     }
 
 

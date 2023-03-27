@@ -35,10 +35,20 @@
               </form>
               <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                  <a class="nav-link" href="{{route('home')}}">আমাদের সম্পর্কে</a>
+                  <a class="nav-link" href="{{route('home')}}">হোম</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">যোগাযোগ</a>
+                    <a class="nav-link" href="{{route('home')}}">পন্য বেচাকেনা</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('home')}}">জমি-জায়গা</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">ডোনেশন</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('home')}}">অভিযোগ</a>
                 </li>
 
                 @if (Route::has('user.authenticate'))

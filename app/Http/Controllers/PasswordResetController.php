@@ -21,7 +21,8 @@ class PasswordResetController extends Controller
 
         PasswordReset::create($formFields);
 
-        return redirect('/')->with('message', 'আপনার নতুন পাসওয়ার্ড পাওয়ার আবেদনটি গ্রহন করা হয়েছে');
+        return redirect('/')->with('message_for_password_reset', 'আবেদনটি গ্রহন করা হয়েছে, ২৪ ঘন্টার মধ্যে
+      নতুন পাসওয়ার্ডটি মোবাইলে এসএমএস এর মাধ্যমে জানিয়ে দেওয়া হবে।');
     }
 
 }

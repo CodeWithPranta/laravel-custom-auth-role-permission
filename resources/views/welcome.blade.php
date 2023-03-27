@@ -14,12 +14,24 @@
     </script>
 @endif
 
+@if (session('message_for_password_reset'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('message_for_password_reset') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <script>
+        // Close alert after 5 seconds
+        setTimeout(function() {
+            document.querySelector('.alert').remove();
+        }, 30000);
+    </script>
+@endif
 <!-- Hero section -->
 <section class="hero-section mt-5">
     <div class="container">
-      <h2>আমাদের ঘটনাপ্রবাহ, অনুষ্ঠান ও সভার অনলাইন সংস্করণে আপনাকে স্বাগতম!</h2>
-      <p>গ্রামের কমিটি, পূজার চাঁদা, সালিশ, বিচার, আয়-ব্যয় এর হিসাব, জনমতের সম্পৃক্ততা, সুসাশন ও নতুন নেতৃত্বের সূচনা হোক এখান থেকেই।
-        baruikati.com হলো একটি গ্রাম ব্যবস্থাপনার সঠিক স্মার্ট ভার্সন। যার লক্ষ্যই জবাবদিহিতা নিশ্চিত করার মাধ্যমে গ্রামের সবার সমান অধিকার গুরুত্ব প্রতিষ্ঠা করা অথবা সুশাসনের ধারা বজায় রাখা। </p>
+      <h2>আমাদের স্মার্ট গ্রামের অনলাইন সংস্করণে আপনাকে স্বাগতম!</h2>
+      <p>বাংলাদেশে আমরাই প্রথম গ্রামের কমিটি, চাঁদা, সালিশি, আয়-ব্যয় এর হিসাব, পন্য বিক্রি, জমি বর্গা অথবা বিক্রি, জনমতের সম্পৃক্ততা সহ ডিজিটাল গ্রাম ম্যানেজমেন্ট সিস্টেম শুরু করছি।
+        baruikati.com হলো একটি গ্রাম ব্যবস্থাপনার সঠিক স্মার্ট ভার্সন। যার লক্ষ্যই জবাবদিহিতা নিশ্চিত করার মাধ্যমে গ্রামের সবার সমান অধিকার প্রতিষ্ঠা করার মাধ্যমে সুশাসনের ধারা বজায় রাখা। </p>
       </div>
 
         </section>
