@@ -7,6 +7,11 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Bootstrap Icons stylesheet -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+    <!-- Bootstrap Icons script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/bootstrap-icons.min.js"></script>
 
     <title>বারুইকাটি- আমার গ্রাম</title>
   </head>
@@ -21,7 +26,7 @@
         </symbol>
     </svg>
 
-    <header class="bg-light">
+    <header class="bg-light shadow-sm">
         <div class="container">
           <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand text-danger" href="{{route('home')}}">বারুইকাটি</a>
@@ -35,20 +40,23 @@
               </form>
               <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                  <a class="nav-link" href="{{route('home')}}">হোম</a>
+                    <a class="nav-link" href="{{route('home')}}">পন্য</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('home')}}">পন্য বেচাকেনা</a>
+                    <a class="nav-link" href="{{route('home')}}">জমি</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('home')}}">জমি-জায়গা</a>
+                  <a class="nav-link" href="#">সেবা</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">ডোনেশন</a>
+                    <a class="nav-link" href="#">ডোনেশন</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">চুক্তি</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('home')}}">অভিযোগ</a>
+                    <a class="nav-link" href="{{route('home')}}"></a>
                 </li>
 
                 @if (Route::has('user.authenticate'))
@@ -92,7 +100,36 @@
         @yield('content')
     </div>
 
-    <div class="container-fluid">
+    <footer class="navbar fixed-bottom navbar-light d-block d-sm-none bg-light shadow-lg rounded-lg">
+        <div class="container-fluid">
+          <div class="row justify-content-center">
+            <div class="col-3">
+              <a class="nav-link d-flex flex-column align-items-center" href="#">
+                <i class="bi bi-house-fill text-success fs-5"></i><span class="text-dark">হোম</span>
+              </a>
+            </div>
+            <div class="col-3">
+              <a class="nav-link d-flex flex-column align-items-center" href="#">
+                <i class="bi bi-person-fill text-success fs-5"></i><span class="text-dark">প্রোফাইল</span>
+              </a>
+            </div>
+            <div class="col-3">
+              <a class="nav-link d-flex flex-column align-items-center" href="#">
+                <i class="bi bi-search text-success fs-5"></i><span class="text-dark">সার্চ</span>
+              </a>
+            </div>
+            <div class="col-3">
+              <a class="nav-link d-flex flex-column align-items-center" href="#">
+                <i class="bi bi-envelope-fill text-success fs-5"></i><span class="text-dark">মতামত</span>
+              </a>
+            </div>
+          </div>
+        </div>
+    </footer>
+
+
+
+    <div class="container-fluid mb-5">
         <div class="row">
             <div class="col-md-12">
                 <div class="footer-wrapper">
@@ -122,5 +159,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
+
+    @yield('script')
   </body>
 </html>

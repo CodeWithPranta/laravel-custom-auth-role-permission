@@ -29,15 +29,15 @@
 <!-- Hero section -->
 <section class="hero-section mt-5">
     <div class="container">
-      <h2>আমাদের স্মার্ট গ্রামের অনলাইন সংস্করণে আপনাকে স্বাগতম!</h2>
+      <h2 id="welcome-msg" class="text-center mb-5">আমাদের স্মার্ট গ্রামের অনলাইন সংস্করণে আপনাকে স্বাগতম!</h2>
       <p>বাংলাদেশে আমরাই প্রথম গ্রামের কমিটি, চাঁদা, সালিশি, আয়-ব্যয় এর হিসাব, পন্য বিক্রি, জমি বর্গা অথবা বিক্রি, জনমতের সম্পৃক্ততা সহ ডিজিটাল গ্রাম ম্যানেজমেন্ট সিস্টেম শুরু করছি।
-        baruikati.com হলো একটি গ্রাম ব্যবস্থাপনার সঠিক স্মার্ট ভার্সন। যার লক্ষ্যই জবাবদিহিতা নিশ্চিত করার মাধ্যমে গ্রামের সবার সমান অধিকার প্রতিষ্ঠা করার মাধ্যমে সুশাসনের ধারা বজায় রাখা। </p>
+        baruikati.com হলো একটি গ্রাম ব্যবস্থাপনার সঠিক স্মার্ট ভার্সন। আমাদের লক্ষ্য প্রযুক্তির সুবিধা গ্রাম পর্যায়ে পৌছানোর মাধ্যমে সব কিছুকে সহজ করে তোলা।  </p>
       </div>
 
         </section>
         <!-- Event notice board -->
         <section class="container my-5">
-          <h2 class="text-center mb-5">সম্পন্ন, চলমান ও আসন্ন প্রোগাম</h2>
+          <h2 class="text-center mb-5">সম্পন্ন, চলমান ও আসন্ন ঘটনাপ্রবাহ</h2>
           <div class="row">
             <div class="col-md-4">
               <div class="card mb-4 shadow-sm">
@@ -87,7 +87,7 @@
           </div>
         </section>
         <!-- About section -->
-        <section class="bg-light py-5">
+        <section class="bg-light py-5 shadow-sm">
           <div class="container">
             <h2 class="text-center mb-5">গ্রাম পরিচিতি</h2>
             <div class="row">

@@ -4,7 +4,7 @@
 <div class="row d-flex justify-content-center">
     <div class="col-md-6">
 
-        <h4 class="mt-3">আপনার তথ্য প্রদান করে রেজিস্ট্রশন করুন  </h4> <span>অথবা</span> <a href="{{route('home')}}">পুনরায় মূল পেজে যান</a>
+        <h4 class="mt-3">আপনার তথ্য প্রদান করে রেজিস্ট্রেশন করুন  </h4> <span>অথবা</span> <a href="{{route('home')}}">পুনরায় মূল পেজে যান</a>
         <form class="mt-5" action="{{route('user.store')}}" method="post">
             @csrf
             @if ($errors->any())
@@ -36,6 +36,18 @@
               <div id="phoneHelp" class="form-text">আপনার অনুমতি ব্যতীত মোবাইল নম্বরটি কাউকে দেওয়া হবে না।</div>
             </div>
             <div class="mb-3">
+                <label for="exampleInputAddress" class="form-label">ঠিকানা লিখুন</label>
+                <select class="form-control" name="is_baruikati" id="addressSelect">
+                    <option value="">--আপনি কি বারুইকাটির বাসিন্দা?--</option>
+                    <option value="Yes">হ্যাঁ</option>
+                    <option value="No">না</option>
+                </select>
+            </div>
+            <div class="mb-3" id="otherAddressDiv" style="display: none;">
+                <label for="exampleInputAddress" class="form-label">গ্রামের নাম সহ ঠিকানা লিখুন</label>
+                <input type="text" name="address" class="form-control" id="otherAddressDiv" value="{{old('address_other')}}">
+            </div>
+            <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">পাসওয়ার্ড দিন (কমপক্ষে ৮ ডিজিট)</label>
               <input type="password" class="form-control" name="password" id="exampleInputPassword1">
             </div>
@@ -50,4 +62,19 @@
         </form>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+    const addressSelect = document.querySelector('#addressSelect');
+    const otherAddressDiv = document.querySelector('#otherAddressDiv');
+
+    addressSelect.addEventListener('change', () => {
+        if (addressSelect.value === 'No') {
+            otherAddressDiv.style.display = 'block';
+        } else {
+            otherAddressDiv.style.display = 'none';
+        }
+    });
+</script>
 @endsection

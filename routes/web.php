@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,19 +13,41 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'index'])->name('home');
+/**
+ * Home page routes
+ */
+Route::get('/', [WelcomeController::class, 'index'])->name('home');
 
-Route::get('/register', [\App\Http\Controllers\UserController::class, 'create'])->name('user.register');
-Route::post('/register', [\App\Http\Controllers\UserController::class, 'register'])->name('user.store');
+/**
+ * Routes related with guest middleware
+ */
+Route::group(['middleware' => ['guest']], function() {
+    Route::get('/register', [UserController::class, 'create'])->name('user.register');
+    Route::post('/register', [UserController::class, 'register'])->name('user.store');
+    Route::get('/login', [UserController::class, 'login'])->name('user.login');
+    Route::post('/login', [UserController::class, 'authenticate'])->name('user.authenticate');
+    Route::get('/password_reset', [PasswordResetController::class, 'password_reset'])->name('user.password_reset');
+    Route::post('/password_reset', [PasswordResetController::class, 'send_password_reset_request'])->name('user.password_reset.request');
+});
+
 
 Route::middleware(['auth'])->group( function () {
     // logout
-    Route::post('/logout', [\App\Http\Controllers\UserController::class, 'logout'])->name('user.logout');
-    Route::get('/dashboard', [\App\Http\Controllers\UserController::class, 'authenticate'])->name('dashboard');
+    Route::post('/logout', [UserController::class, 'logout'])->name('user.logout');
+    Route::get('/dashboard', function() {
+        return view('users.dashboard');
+    })->name('dashboard');
 });
 
-Route::get('/login', [\App\Http\Controllers\UserController::class, 'login'])->name('user.login');
-Route::post('/login', [\App\Http\Controllers\UserController::class, 'authenticate'])->name('user.authenticate');
-Route::get('/password_reset', [\App\Http\Controllers\PasswordResetController::class, 'password_reset'])->name('user.password_reset');
-Route::post('/password_reset', [\App\Http\Controllers\PasswordResetController::class, 'send_password_reset_request'])->name('user.password_reset.request');
+Route::middleware(['auth', 'role:admin'])->group(function() {
+    Route::get('/admin-dashboard', function(){
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+
+    Route::get('/events', function (){
+        return true;
+    });
+});
+
+
 

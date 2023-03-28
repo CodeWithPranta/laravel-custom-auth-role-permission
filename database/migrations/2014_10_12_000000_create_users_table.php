@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->string('father_name')->nullable();
             $table->string('mother_name')->nullable();
+            $table->string('is_baruikati')->nullable();
+            $table->string('address')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

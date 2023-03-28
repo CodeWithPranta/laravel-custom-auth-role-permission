@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-
 class UserController extends Controller
 {
     // Show register form for user
@@ -21,12 +20,15 @@ class UserController extends Controller
             'father_name' => ['required', 'min:3'],
             'mother_name' => ['required', 'min:3'],
             'password' => ['required', 'confirmed', 'min:8'],
+            'is_baruikati' => ['required'],
+            'address' => [],
         ]);
 
         // Hash password
         $formFields['password'] = bcrypt($formFields['password']);
 
         $user = User::create($formFields);
+        //$user->assignRole('user');
 
         auth()->login($user);
 
@@ -56,12 +58,11 @@ class UserController extends Controller
 
         if (auth()->attempt($formFields)){
             $request->session()->regenerate();
-
-            return view('users.dashboard');
         }
 
         return back()->withErrors(['phone' => 'আপনি ভূল মোবাইল নম্বর অথবা পাসওয়ার্ড প্রদান করেছেন!'])->onlyInput('email');
     }
+
 
 
 }
