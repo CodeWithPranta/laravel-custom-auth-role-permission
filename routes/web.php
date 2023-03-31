@@ -47,6 +47,8 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
     Route::get('/events', function (){
         return true;
     });
+
+    Route::resource('adminusers', Admin\UserController::class);
 });
 
 

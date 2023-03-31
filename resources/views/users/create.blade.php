@@ -37,7 +37,7 @@
             </div>
             <div class="mb-3">
                 <label for="exampleInputAddress" class="form-label">ঠিকানা লিখুন</label>
-                <select class="form-control" name="is_baruikati" id="addressSelect">
+                <select class="form-control" name="is_baruikati" id="addressSelect" value="{{old('is_baruikati')}}">
                     <option value="">--আপনি কি বারুইকাটির বাসিন্দা?--</option>
                     <option value="Yes">হ্যাঁ</option>
                     <option value="No">না</option>
@@ -45,7 +45,7 @@
             </div>
             <div class="mb-3" id="otherAddressDiv" style="display: none;">
                 <label for="exampleInputAddress" class="form-label">গ্রামের নাম সহ ঠিকানা লিখুন</label>
-                <input type="text" name="address" class="form-control" id="otherAddressDiv" value="{{old('address_other')}}">
+                <input type="text" name="address" class="form-control" id="otherAddressDiv" value="{{old('address')}}">
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">পাসওয়ার্ড দিন (কমপক্ষে ৮ ডিজিট)</label>
