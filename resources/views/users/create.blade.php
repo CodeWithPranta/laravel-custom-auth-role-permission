@@ -39,7 +39,7 @@
                 <label for="exampleInputAddress" class="form-label">ঠিকানা লিখুন</label>
                 <select class="form-control" name="is_baruikati" id="addressSelect" value="{{old('is_baruikati')}}">
                     <option value="">--আপনি কি বারুইকাটির বাসিন্দা?--</option>
-                    <option value="Yes">হ্যাঁ</option>
+                    <option value="বারুইকাটি">হ্যাঁ</option>
                     <option value="No">না</option>
                 </select>
             </div>

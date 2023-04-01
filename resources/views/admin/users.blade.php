@@ -3,6 +3,14 @@
 <div class="container mt-5">
     <h2>Users List</h2>
     <div class="row">
+        <div class="mt-3 col-md-6">
+            <form action="{{route('adminusers.index')}}" method="GET" class="d-flex mx-auto my-3 my-lg-0">
+                <input class="form-control me-2" type="text" name="search" placeholder="Type user phone or name">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
@@ -23,11 +31,11 @@
                         <td>{{$serial_no++}}</td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->phone}}</td>
-                        <td>{{$user->father_name}}</td>
+                        <td>{{ $user->father_name }}</td>
                         <td>{{$user->mother_name}}</td>
                         <td>
-                            @if ($user->is_baruikati == 'Yes')
-                            {{__('Baruikati')}}
+                            @if ($user->is_baruikati == 'বারুইকাটি')
+                            {{__('বারুইকাটি')}}
                             @else
                             {{$user->address}}
                             @endif
@@ -37,6 +45,11 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            {!! $users->links() !!}  {{--{{}} and {!! !!} are same --}}
         </div>
     </div>
 </div>

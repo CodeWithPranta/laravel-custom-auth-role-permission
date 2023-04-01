@@ -12,12 +12,17 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::latest()->paginate(10);
+        $request->validate([
+            'search' => 'nullable|string|min:3',
+        ]);
+
+        $users = User::latest()->filter(request(['search']))->paginate(5);
 
         return view('admin.users', compact('users'));
     }
+
 
     /**
      * Show the form for creating a new resource.
