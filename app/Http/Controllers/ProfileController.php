@@ -37,9 +37,12 @@ class ProfileController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Profile $profile)
+    public function show()
     {
-        //
+        $user = Auth::user();
+        $profile = $user->profile;
+
+        return view('users.user_profile', compact('user', 'profile'));
     }
 
     /**
@@ -69,7 +72,7 @@ class ProfileController extends Controller
             'phone' => 'required|string|min:11|unique:users,phone,'.$user->id,
             'is_baruikati' => ['required'],
             'address' => [],
-            'avatar' =>'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'avatar' =>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'birth_date' => 'required|date|before:today',
             'gender' => 'required',
             'blood_group' => 'required',
@@ -88,9 +91,13 @@ class ProfileController extends Controller
         ]);
 
         if ($profile->exists) {
-            // Remove the old avatar if it is exists before update
-            if ($profile->avatar) {
-                Storage::delete('public/files/avatars'.$profile->avatar);
+            // Remove the old avatar only if a new one has been uploaded
+            /**
+             * When I tried to change only gender then image was delted auto that's why added
+             * $request->hasFile('avatar') && $profile->avatar instead only $profile->avatar
+             */
+            if ($request->hasFile('avatar') && $profile->avatar) {
+                Storage::delete('public/files/avatars/'.$profile->avatar);
             }
 
             $profile->update([
