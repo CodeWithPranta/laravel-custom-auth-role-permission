@@ -133,7 +133,7 @@ class ProfileController extends Controller
             }
         }
 
-        return back()->with('message', 'আপনার প্রোফাইল সফলভাবে আপডেট হয়েছে।');
+        return redirect()->route('user.show_profile')->with('message', 'আপনার প্রোফাইল সফলভাবে আপডেট হয়েছে।');
     }
 
     /**

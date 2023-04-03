@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-4">
         <div class="card">
-          <img src="{{ asset('files/avatars/' . $profile->avatar) }}" alt="Avatar" class="card-img-top">
+          <img src="{{ asset('storage/files/avatars/' . $profile->avatar) }}" alt="Avatar" class="card-img-top">
           <div class="card-body">
             <h5 class="card-title">{{ $user->name }}</h5>
             <p class="card-text">{{ $user->phone }}</p>
@@ -19,15 +19,20 @@
           <div class="card-body">
             <div class="row">
               <div class="col-md-6">
-                <p><strong>Name:</strong> {{ $user->name }}</p>
-                <p><strong>Father Name:</strong> {{ $user->father_name }}</p>
-                <p><strong>Mother Name:</strong> {{ $user->mother_name }}</p>
-                <p><strong>Birth Date:</strong> {{ $profile->birth_date }}</p>
-                <p><strong>Gender:</strong> {{ $profile->gender }}</p>
-                <p><strong>Blood Group:</strong> {{ $profile->blood_group }}</p>
+                <p><strong>পিতার নাম:</strong> {{ $user->father_name }}</p>
+                <p><strong>মাতার নাম:</strong> {{ $user->mother_name }}</p>
+                <p><strong>জন্মতারিখ:</strong> {{ $profile->birth_date }}</p>
+                <p><strong>জেন্ডার:</strong> {{ $profile->gender }}</p>
+                <p><strong>রক্তের গ্রুপ:</strong> {{ $profile->blood_group }}</p>
+                <p><strong>পেশা:</strong> {{ $profile->profession }}</p>
+                <p><strong>ঠিকানা:</strong> @if ($user->is_baruikati == 'বারুইকাটি')
+                    {{__('বারুইকাটি')}}
+                    @else
+                    {{$user->address}}
+                @endif</p>
               </div>
               <div class="col-md-6">
-                <p><strong>Address:</strong> {{ $user->address }}</p>
+                <p><strong>বায়োগ্রাফি:</strong> {{$profile->bio}}</p>
               </div>
             </div>
           </div>
