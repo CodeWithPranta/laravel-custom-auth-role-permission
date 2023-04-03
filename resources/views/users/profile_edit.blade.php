@@ -80,6 +80,7 @@
                     <option value="AB-" {{$profile && $profile->blood_group == 'AB-' ? 'selected' : '' }}>AB-</option>
                     <option value="O+" {{$profile && $profile->blood_group == 'O+' ? 'selected' : '' }}>O+</option>
                     <option value="O-" {{$profile && $profile->blood_group == 'O-' ? 'selected' : '' }}> O-</option>
+                    <option value="অজানা" {{$profile && $profile->blood_group == 'অজানা' ? 'selected' : '' }}>অজানা</option>
 
                 </select>
             </div>

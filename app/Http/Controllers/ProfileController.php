@@ -7,6 +7,7 @@ use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
@@ -72,12 +73,12 @@ class ProfileController extends Controller
             'phone' => 'required|string|min:11|unique:users,phone,'.$user->id,
             'is_baruikati' => ['required'],
             'address' => [],
-            'avatar' =>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'birth_date' => 'required|date|before:today',
+            'avatar' =>'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'birth_date' => 'nullable|date|before:today',
             'gender' => 'required',
-            'blood_group' => 'required',
+            'blood_group' => 'nullable',
             'profession' => 'required',
-            'bio' => 'required',
+            'bio' => 'nullable',
         ]);
 
         // User info update in users table
@@ -92,10 +93,6 @@ class ProfileController extends Controller
 
         if ($profile->exists) {
             // Remove the old avatar only if a new one has been uploaded
-            /**
-             * When I tried to change only gender then image was delted auto that's why added
-             * $request->hasFile('avatar') && $profile->avatar instead only $profile->avatar
-             */
             if ($request->hasFile('avatar') && $profile->avatar) {
                 Storage::delete('public/files/avatars/'.$profile->avatar);
             }
@@ -110,12 +107,25 @@ class ProfileController extends Controller
 
             if ($request->hasFile('avatar')) {
                 $avatar = $request->file('avatar');
+
+                // Create a new instance of Intervention Image
+                $image = Image::make($avatar);
+
+                // Compress the image to a maximum size of 800x600 pixels and 75% quality
+                $image->resize(800, 600, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
+                $image->encode('jpg', 75);
+
+                // Generate a unique file name and save the compressed image to disk
                 $avatarName = time() . '.' . $avatar->getClientOriginalExtension();
-                $avatar->storeAs('public/files/avatars', $avatarName);
+                Storage::put('public/files/avatars/'.$avatarName, $image->__toString());
+
                 $profile->avatar = $avatarName;
                 $profile->save();
             }
-        }else{
+        } else {
             $newProfile = $user->profile()->create([
                 'birth_date' => $validateData['birth_date'],
                 'gender' => $validateData['gender'],
@@ -126,8 +136,21 @@ class ProfileController extends Controller
 
             if ($request->hasFile('avatar')) {
                 $avatar = $request->file('avatar');
+
+                // Create a new instance of Intervention Image
+                $image = Image::make($avatar);
+
+                // Compress the image to a maximum size of 800x600 pixels and 75% quality
+                $image->resize(200, 300, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
+                $image->encode('jpg', 75);
+
+                // Generate a unique file name and save the compressed image to disk
                 $avatarName = time() . '.' . $avatar->getClientOriginalExtension();
-                $avatar->storeAs('public/files/avatars', $avatarName);
+                Storage::put('public/files/avatars/'.$avatarName, $image->__toString());
+
                 $newProfile->avatar = $avatarName;
                 $newProfile->save();
             }
