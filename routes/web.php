@@ -37,6 +37,10 @@ Route::middleware(['auth'])->group( function () {
     Route::get('/dashboard', function() {
         return view('users.dashboard');
     })->name('dashboard');
+
+    //Profile edit and update section
+    Route::get('dashboard/edit-profile', [ProfileController::class, 'edit'])->name('user.edit_profile');
+    Route::post('dashboard/edit-profile', [ProfileController::class, 'update'])->name('user.update_profile');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function() {

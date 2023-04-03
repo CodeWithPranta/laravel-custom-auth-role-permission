@@ -33,7 +33,7 @@
             <div class="mb-3">
               <label for="exampleInputPhone" class="form-label">মোবাইল নম্বর</label>
               <input type="text" name="phone" class="form-control" id="exampleInputPhone" aria-describedby="phoneHelp" value="{{old('phone')}}">
-              <div id="phoneHelp" class="form-text">আপনার অনুমতি ব্যতীত মোবাইল নম্বরটি কাউকে দেওয়া হবে না।</div>
+
             </div>
             <div class="mb-3">
                 <label for="exampleInputAddress" class="form-label">ঠিকানা লিখুন</label>

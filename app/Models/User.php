@@ -57,7 +57,9 @@ class User extends Authenticatable
                 $query->where('name', 'like', '%' . $search . '%')
                     ->orWhere('phone', 'like', '%' . $search . '%')
                     ->orWhere('father_name', 'like', '%' . $search . '%')
-                    ->orWhere('mother_name', 'like', '%' . $search . '%');
+                    ->orWhere('mother_name', 'like', '%' . $search . '%')
+                    ->orWhere('address', 'like', '%' . $search . '%')
+                    ->orWhere('is_baruikati', 'like', '%' . $search . '%');
             });
         }
 

@@ -5,7 +5,7 @@
     <div class="row">
         <div class="mt-3 col-md-6">
             <form action="{{route('adminusers.index')}}" method="GET" class="d-flex mx-auto my-3 my-lg-0">
-                <input class="form-control me-2" type="text" name="search" placeholder="Type user phone or name">
+                <input class="form-control me-2" type="text" name="search" placeholder="Type user phone or name or address">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
