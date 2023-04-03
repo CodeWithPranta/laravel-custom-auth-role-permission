@@ -3,18 +3,6 @@
 @section('content')
 <div class="row d-flex justify-content-center">
     <div class="col-md-6">
-        @if (session('message'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('message') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <script>
-            // Close alert after 5 seconds
-            setTimeout(function() {
-                document.querySelector('.alert').remove();
-            }, 5000);
-        </script>
-        @endif
         <form class="mt-5" action="{{route('user.update_profile')}}" method="post" enctype="multipart/form-data">
             @csrf
             @if ($errors->any())
@@ -62,7 +50,7 @@
             <div class="mb-3">
                 <label  class="form-label">প্রোফাইল ফটো</label>
                 <input type="file" name="avatar" class="form-control" onchange="previewImage(this)">
-                <img id="avatarPreview" src="{{asset('storage/files/avatars/' . $profile->avatar)}}" alt="Avatar Preview" width="200" {{!$profile ? 'style=display:none;' : 'style=display:block;'}}>
+                <img id="avatarPreview" src="{{ $profile ? asset('storage/files/avatars/' . $profile->avatar) : '' }}" alt="Avatar Preview" width="200" {{ $profile ? 'style=display:block;' : 'style=display:none;' }}>
             </div>
 
             <div class="mb-3">
@@ -74,9 +62,9 @@
                 <label for="gender" class="form-label">জেন্ডার</label>
                 <select name="gender" class="form-control">
                     <option value="">সিলেক্ট করুন</option>
-                    <option value="পুরুষ" {{ $profile->gender == 'পুরুষ' ? 'selected' : '' }}>পুরুষ</option>
-                    <option value="নারী" {{ $profile->gender == 'নারী' ? 'selected' : '' }}>নারী</option>
-                    <option value="অন্যান্য" {{ $profile->gender == 'অন্যান্য' ? 'selected' : '' }}>অন্যান্য</option>
+                    <option value="পুরুষ" {{$profile && $profile->gender == 'পুরুষ' ? 'selected' : '' }}>পুরুষ</option>
+                    <option value="নারী" {{$profile && $profile->gender == 'নারী' ? 'selected' : '' }}>নারী</option>
+                    <option value="অন্যান্য" {{$profile && $profile->gender == 'অন্যান্য' ? 'selected' : '' }}>অন্যান্য</option>
 
                 </select>
             </div>
@@ -84,14 +72,14 @@
                 <label for="blood_group" class="form-label">রক্তের গ্রুপ</label>
                 <select name="blood_group" class="form-control">
                     <option value="">সিলেক্ট করুন</option>
-                    <option value="A+" {{ $profile->blood_group == 'A+' ? 'selected' : '' }}>A+</option>
-                    <option value="A-" {{ $profile->blood_group == 'A-' ? 'selected' : '' }}>A-</option>
-                    <option value="B+" {{ $profile->blood_group == 'B+' ? 'selected' : '' }}>B+</option>
-                    <option value="B-" {{ $profile->blood_group == 'B-' ? 'selected' : '' }}>B-</option>
-                    <option value="AB+" {{ $profile->blood_group == 'AB+' ? 'selected' : '' }}>AB+</option>
-                    <option value="AB-" {{ $profile->blood_group == 'AB-' ? 'selected' : '' }}>AB-</option>
-                    <option value="O+" {{ $profile->blood_group == 'O+' ? 'selected' : '' }}>O+</option>
-                    <option value="O-" {{ $profile->blood_group == 'O-' ? 'selected' : '' }}> O-</option>
+                    <option value="A+" {{$profile && $profile->blood_group == 'A+' ? 'selected' : '' }}>A+</option>
+                    <option value="A-" {{$profile && $profile->blood_group == 'A-' ? 'selected' : '' }}>A-</option>
+                    <option value="B+" {{$profile && $profile->blood_group == 'B+' ? 'selected' : '' }}>B+</option>
+                    <option value="B-" {{$profile && $profile->blood_group == 'B-' ? 'selected' : '' }}>B-</option>
+                    <option value="AB+" {{$profile && $profile->blood_group == 'AB+' ? 'selected' : '' }}>AB+</option>
+                    <option value="AB-" {{$profile && $profile->blood_group == 'AB-' ? 'selected' : '' }}>AB-</option>
+                    <option value="O+" {{$profile && $profile->blood_group == 'O+' ? 'selected' : '' }}>O+</option>
+                    <option value="O-" {{$profile && $profile->blood_group == 'O-' ? 'selected' : '' }}> O-</option>
 
                 </select>
             </div>
