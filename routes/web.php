@@ -42,6 +42,10 @@ Route::middleware(['auth'])->group( function () {
     Route::get('dashboard/edit-profile', [ProfileController::class, 'edit'])->name('user.edit_profile');
     Route::post('dashboard/edit-profile', [ProfileController::class, 'update'])->name('user.update_profile');
     Route::get('dashboard/profile', [ProfileController::class, 'show'])->name('user.show_profile');
+
+    // Change password
+    Route::get('/change-password', [ChangePasswordController::class, 'showChangePasswordForm'])->name('change.password');
+    Route::post('/change-password', [ChangePasswordController::class, 'updatePassword'])->name('update.password');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function() {

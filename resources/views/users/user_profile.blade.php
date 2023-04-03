@@ -15,13 +15,14 @@
         </script>
         @endif
       <div class="col-md-4">
-        <div class="card">
+        <div class="card shadow-sm">
             @if($profile)
-            <img src="{{ asset('storage/files/avatars/' . $profile->avatar) }}" alt="Avatar" class="card-img-top">
+            <img src="{{ asset('storage/files/avatars/' . $profile->avatar) }}" alt="Avatar" class="card-img-top img-fluid">
             @endif
           <div class="card-body">
             <h5 class="card-title">{{ $user->name }}</h5>
             <p class="card-text">{{ $user->phone }}</p>
+            <a href="{{route('user.edit_profile')}}">প্রোফাইল এডিট করুন</a>
           </div>
         </div>
       </div>
