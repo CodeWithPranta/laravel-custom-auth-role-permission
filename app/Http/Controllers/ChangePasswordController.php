@@ -18,7 +18,12 @@ class ChangePasswordController extends Controller
     {
         $this->validate($request, [
             'current_password' => 'required',
-            'password' => 'required|confirmed|min:8',
+            'password' => [
+                'required',
+                'min:8',
+                'different:current_password',
+                'confirmed',
+            ],
         ]);
 
         $user = Auth::user();

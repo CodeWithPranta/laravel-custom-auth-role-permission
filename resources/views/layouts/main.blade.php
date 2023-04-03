@@ -65,7 +65,7 @@
                     <ul class="dropdown-menu" aria-labelledby="profileDropdown">
                       <li><a class="dropdown-item" href="{{route('user.show_profile')}}">আমার প্রোফাইল</a></li>
                       <li><a class="dropdown-item" href="{{route('user.edit_profile')}}">এডিট প্রোফাইল</a></li>
-                      <li><a class="dropdown-item" href="{{route('.password')}}">পাসওয়ার্ড পরিবর্তন</a></li>
+                      <li><a class="dropdown-item" href="{{route('change.password')}}">পাসওয়ার্ড পরিবর্তন</a></li>
                       <li><hr class="dropdown-divider"></li>
                       <li>
                         <form action="{{route('user.logout')}}" method="post">
