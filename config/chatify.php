@@ -6,7 +6,7 @@ return [
     | Messenger display name
     |-------------------------------------
     */
-    'name' => env('CHATIFY_NAME', 'Baruikati Messenger'),
+    'name' => env('CHATIFY_NAME', 'Live Chat'),
 
     /*
     |-------------------------------------
