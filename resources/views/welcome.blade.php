@@ -39,51 +39,23 @@
         <section class="container my-5">
           <h2 class="text-center mb-5">সম্পন্ন, চলমান ও আসন্ন ঘটনাপ্রবাহ</h2>
           <div class="row">
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                <div class="card-body">
-                  <h4 class="card-title">Event Title 1</h4>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut varius massa eu aliquet maximus.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+            @if(!empty($postEvents))
+                @foreach ($postEvents as $postEvent)
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <div class="card-body">
+                                <h4 class="card-title">{{$postEvent->title}}</h4>
+                                <p class="card-text post-description" data-fulltext="{{$postEvent->description}}">{{ Str::limit($postEvent->description, 50) }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-light load-more-button">বিস্তারিত..</button>
+                                    <small class="text-muted"><strong>Posted on:</strong> {{ \Carbon\Carbon::parse($postEvent->created_at)->format('M j, Y') }}</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <small class="text-muted">Posted on: Jan 1, 2023</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                <div class="card-body">
-                  <h4 class="card-title">Event Title 2</h4>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut varius massa eu aliquet maximus.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">Posted on: Jan 1, 2023</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                <div class="card-body">
-                  <h4 class="card-title">Event Title 3</h4>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut varius massa eu aliquet maximus.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">Posted on: Jan 1, 2023</small>
-                  </div>
-                </div>
-              </div>
-            </div>
+                @endforeach
+            @endif
+           {{$postEvents->links()}}
           </div>
         </section>
         <!-- About section -->
@@ -107,6 +79,35 @@
             </div>
             </div>
             </div>
+@endsection
+
+@section('script')
+<script>
+    const postDescriptions = document.querySelectorAll('.post-description');
+
+    postDescriptions.forEach(description => {
+        const fulltext = description.dataset.fulltext;
+        const strLength = 70;
+
+        if (fulltext.length > strLength) {
+            const shortText = fulltext.substring(0, strLength);
+            const longText = fulltext;
+
+            description.innerHTML = shortText + `<span class="more-text d-none">${longText}</span>`;
+            const loadMoreButton = description.parentElement.querySelector('.load-more-button');
+            loadMoreButton.addEventListener('click', function() {
+                const moreText = description.querySelector('.more-text');
+                moreText.classList.toggle('d-none');
+
+                if (loadMoreButton.textContent === 'বিস্তারিত..') {
+                    loadMoreButton.textContent = 'সংক্ষেপ';
+                } else {
+                    loadMoreButton.textContent = 'বিস্তারিত..';
+                }
+            });
+        }
+    });
+</script>
 
 @endsection
 

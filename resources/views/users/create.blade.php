@@ -37,10 +37,10 @@
             </div>
             <div class="mb-3">
                 <label for="exampleInputAddress" class="form-label">ঠিকানা লিখুন</label>
-                <select class="form-control" name="is_baruikati" id="addressSelect" value="{{old('is_baruikati')}}">
+                <select class="form-control" name="is_baruikati" id="addressSelect">
                     <option value="">--আপনি কি বারুইকাটির বাসিন্দা?--</option>
-                    <option value="বারুইকাটি">হ্যাঁ</option>
-                    <option value="No">না</option>
+                    <option value="বারুইকাটি" {{ old('is_baruikati') == 'বারুইকাটি' ? 'selected' : '' }}>হ্যাঁ</option>
+                    <option value="No" {{ old('is_baruikati') == 'No' ? 'selected' : '' }}>না</option>
                 </select>
             </div>
             <div class="mb-3" id="otherAddressDiv" style="display: none;">

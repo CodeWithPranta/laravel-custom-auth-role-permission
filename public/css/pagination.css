@@ -1,0 +1,24 @@
+/* Change the color of active pagination item */
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover {
+    background-color: gray; /* Change to your desired color */
+    border-color: gray;
+}
+
+/* Change the color of hover pagination item */
+.pagination > .page-item > a:focus,
+.pagination > .page-item > a:hover,
+.pagination > .page-item > span:focus,
+.pagination > .page-item > span:hover {
+    background-color: gray; /* Change to your desired color */
+    border-color: gray;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: gray;
+    border-color: gray;
+}
+

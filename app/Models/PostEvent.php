@@ -16,4 +16,9 @@ class PostEvent extends Model
         'title',
         'description',
     ];
+
+    //  // One to Many with PostEvent
+    //  public function user(){
+    //     return $this->belongsTo(User::class);
+    // }
 }

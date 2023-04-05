@@ -48,8 +48,8 @@
                 <h4>গুরুত্বপূর্ণ তথ্য</h4>
             </div>
             <div class="mb-3">
-                <label  class="form-label">প্রোফাইল ফটো</label>
-                <input type="file" name="avatar" class="form-control" onchange="previewImage(this)">
+                <label class="form-label">প্রোফাইল ফটো</label>
+                <input type="file" name="avatar" class="form-control" onchange="previewAndResizeImage(this)">
                 <img id="avatarPreview" src="{{ $profile ? asset('storage/files/avatars/' . $profile->avatar) : '' }}" alt="Avatar Preview" width="200" {{ $profile ? 'style=display:block;' : 'style=display:none;' }}>
             </div>
 
@@ -113,16 +113,46 @@
     });
 
 
-    // Profile photo preview
+    // Profile photo preview and resize image in Pure JavaScript
 
-    function previewImage(input) {
-    var preview = document.getElementById('avatarPreview');
-    preview.style.display = "block";
-    var reader = new FileReader();
-    reader.onload = function(event) {
-        preview.src = event.target.result;
-    }
-    reader.readAsDataURL(input.files[0]);
+    function previewAndResizeImage(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const MAX_WIDTH = 800;
+                    const MAX_HEIGHT = 800;
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > height) {
+                        if (width > MAX_WIDTH) {
+                            height *= MAX_WIDTH / width;
+                            width = MAX_WIDTH;
+                        }
+                    } else {
+                        if (height > MAX_HEIGHT) {
+                            width *= MAX_HEIGHT / height;
+                            height = MAX_HEIGHT;
+                        }
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    const preview = document.getElementById('avatarPreview');
+                    preview.src = canvas.toDataURL(input.files[0].type);
+                    preview.style.display = 'block';
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
     }
 </script>
 @endsection

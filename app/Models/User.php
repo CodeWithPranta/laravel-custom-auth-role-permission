@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Profile;
+use App\Models\PostEvent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -71,5 +72,8 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
-
+    // // One to Many with PostEvent
+    // public function event_posts(){
+    //     return $this->hasMany(PostEvent::class);
+    // }
 }

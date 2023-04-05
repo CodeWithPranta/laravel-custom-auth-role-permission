@@ -9,6 +9,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Bootstrap Icons stylesheet -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+    <link href="{{ asset('css/pagination.css') }}" rel="stylesheet">
 
     <title>বারুইকাটি- আমার গ্রাম</title>
   </head>
@@ -49,7 +52,7 @@
                     <a class="nav-link" href="#">ডোনেশন</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">চুক্তি</a>
+                    <a class="nav-link" href="#">অভিযোগ</a>
                 </li>
 
                 <li class="nav-item">
@@ -63,6 +66,7 @@
                       {{auth()->user()->name}}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                      <li><a class="dropdown-item" href="{{route('dashboard')}}">ড্যাশবোর্ড</a></li>
                       <li><a class="dropdown-item" href="{{route('user.show_profile')}}">আমার প্রোফাইল</a></li>
                       <li><a class="dropdown-item" href="{{route('user.edit_profile')}}">এডিট প্রোফাইল</a></li>
                       <li><a class="dropdown-item" href="{{route('change.password')}}">পাসওয়ার্ড পরিবর্তন</a></li>
@@ -102,14 +106,20 @@
         <div class="container-fluid">
           <div class="row justify-content-center">
             <div class="col-3">
-              <a class="nav-link d-flex flex-column align-items-center" href="#">
+              <a class="nav-link d-flex flex-column align-items-center" href="/">
                 <i class="bi bi-house-fill text-success fs-5"></i><span class="text-dark">হোম</span>
               </a>
             </div>
             <div class="col-3">
-              <a class="nav-link d-flex flex-column align-items-center" href="#">
-                <i class="bi bi-person-fill text-success fs-5"></i><span class="text-dark">প্রোফাইল</span>
-              </a>
+                <a class="nav-link d-flex flex-column align-items-center" href="{{route('dashboard')}}">
+                    @auth
+                        <i class="bi bi-person-fill text-success fs-5"></i>
+                        <span class="text-dark">{{__('ড্যাশবোর্ড') }}</span>
+                    @else
+                        <i class="bi bi-person-fill text-success fs-5"></i>
+                        <span class="text-dark">প্রোফাইল</span>
+                    @endauth
+                </a>
             </div>
             <div class="col-3">
                 <a class="nav-link d-flex flex-column align-items-center" href="#">
@@ -150,6 +160,8 @@
     <!-- Optional JavaScript; choose one of the two! -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="{{asset('js/chat.js')}}"></script>
 
     @yield('script')
   </body>

@@ -16,7 +16,7 @@ class UserController extends Controller
     public function register(Request $request) {
         $formFields = $request->validate([
             'name' => ['required', 'min:3'],
-            'phone' => ['required', 'min:11', Rule::unique('users', 'phone')],
+            'phone' => ['required', 'numeric', 'digits:11', Rule::unique('users', 'phone')],
             'father_name' => ['required', 'min:3'],
             'mother_name' => ['required', 'min:3'],
             'password' => ['required', 'confirmed', 'min:8'],

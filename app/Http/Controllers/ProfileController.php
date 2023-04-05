@@ -70,7 +70,7 @@ class ProfileController extends Controller
             'name' => 'required|string|max:255',
             'father_name' => 'required|string|max:255',
             'mother_name' => 'required|string|max:255',
-            'phone' => 'required|string|min:11|unique:users,phone,'.$user->id,
+            'phone' => 'required|numeric|digits:11|unique:users,phone,'.$user->id,
             'is_baruikati' => ['required'],
             'address' => [],
             'avatar' =>'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
@@ -141,7 +141,7 @@ class ProfileController extends Controller
                 $image = Image::make($avatar);
 
                 // Compress the image to a maximum size of 800x600 pixels and 75% quality
-                $image->resize(200, 300, function ($constraint) {
+                $image->resize(403, 600, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 });

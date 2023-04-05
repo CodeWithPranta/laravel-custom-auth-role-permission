@@ -1,5 +1,7 @@
 <?php
 namespace App\Http\Controllers;
+
+use App\Models\PostEvent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +40,9 @@ Route::middleware(['auth'])->group( function () {
         return view('users.dashboard');
     })->name('dashboard');
 
+    // Chat option
+    // Route::post('/chat/send', [ChatController::class, 'sendMessage']);
+
     //Profile edit and update section
     Route::get('dashboard/edit-profile', [ProfileController::class, 'edit'])->name('user.edit_profile');
     Route::post('dashboard/edit-profile', [ProfileController::class, 'update'])->name('user.update_profile');
@@ -46,16 +51,23 @@ Route::middleware(['auth'])->group( function () {
     // Change password
     Route::get('/change-password', [ChangePasswordController::class, 'showChangePasswordForm'])->name('change.password');
     Route::post('/change-password', [ChangePasswordController::class, 'updatePassword'])->name('update.password');
+
+    // Post events
+    Route::get('user/events', [PostEventController::class, 'index'])->name('events.index');
+    Route::get('user/events/create', [PostEventController::class, 'create'])->name('events.create');
+    Route::post('user/events/create', [PostEventController::class, 'store'])->name('events.store');
+    Route::get('user/events/edit/{id}', [PostEventController::class, 'edit'])->name('events.edit');
+    Route::put('user/events/edit/{id}', [PostEventController::class, 'update'])->name('events.update');
+    Route::delete('user/events/{id}', [PostEventController::class, 'destroy'])->name('events.destroy');
+
+    // See registered users
+    Route::get('verified-users', [WelcomeController::class, 'allUsers'])->name('verified.users');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function() {
     Route::get('/admin-dashboard', function(){
         return view('admin.dashboard');
     })->name('admin.dashboard');
-
-    Route::get('/events', function (){
-        return true;
-    });
 
     Route::resource('adminusers', Admin\UserController::class);
 });
