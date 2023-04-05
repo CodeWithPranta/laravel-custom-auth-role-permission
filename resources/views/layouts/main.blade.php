@@ -52,7 +52,7 @@
                     <a class="nav-link" href="#">ডোনেশন</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">অভিযোগ</a>
+                    <a class="nav-link" href="{{url('/live-chat')}}">লাইভ চ্যাট</a>
                 </li>
 
                 <li class="nav-item">
@@ -127,8 +127,8 @@
                 </a>
             </div>
             <div class="col-3">
-              <a class="nav-link d-flex flex-column align-items-center" href="#">
-                <i class="bi bi-envelope-fill text-success fs-5"></i><span class="text-dark">হেল্প</span>
+              <a class="nav-link d-flex flex-column align-items-center" href="{{url('/live-chat')}}">
+                <i class="bi-chat-dots-fill text-success fs-5"></i><span class="text-dark">চ্যাট</span>
               </a>
             </div>
           </div>
@@ -161,7 +161,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-    <script src="{{asset('js/chat.js')}}"></script>
 
     @yield('script')
   </body>

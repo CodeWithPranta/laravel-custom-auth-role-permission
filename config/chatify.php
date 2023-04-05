@@ -6,7 +6,7 @@ return [
     | Messenger display name
     |-------------------------------------
     */
-    'name' => env('CHATIFY_NAME', 'Chatify Messenger'),
+    'name' => env('CHATIFY_NAME', 'Baruikati Messenger'),
 
     /*
     |-------------------------------------
@@ -22,12 +22,12 @@ return [
     |-------------------------------------
     */
     'routes' => [
-        'prefix' => env('CHATIFY_ROUTES_PREFIX', 'chatify'),
+        'prefix' => env('CHATIFY_ROUTES_PREFIX', 'live-chat'),
         'middleware' => env('CHATIFY_ROUTES_MIDDLEWARE', ['web','auth']),
         'namespace' => env('CHATIFY_ROUTES_NAMESPACE', 'Chatify\Http\Controllers'),
     ],
     'api_routes' => [
-        'prefix' => env('CHATIFY_API_ROUTES_PREFIX', 'chatify/api'),
+        'prefix' => env('CHATIFY_API_ROUTES_PREFIX', 'live-chat/api'),
         'middleware' => env('CHATIFY_API_ROUTES_MIDDLEWARE', ['api']),
         'namespace' => env('CHATIFY_API_ROUTES_NAMESPACE', 'Chatify\Http\Controllers\Api'),
     ],
